@@ -1,0 +1,16 @@
+.button_add {
+    background-color: #1B1A17;
+    color: #FF8303;
+    border-radius: 5px;
+    height: 70px;
+    width: 70px;
+    text-align: center;
+    font-size: 35px;
+    padding: 10px 10px;
+    margin: 0;
+    border: 2px solid #FF8303;
+    cursor:  pointer;
+}
+.button_add:active{
+    background-color: #1F1E1B;
+}
