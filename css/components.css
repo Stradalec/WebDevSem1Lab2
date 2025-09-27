@@ -14,3 +14,22 @@
 .button_add:active{
     background-color: #1F1E1B;
 }
+
+input {
+    background-color: #1B1A17;
+    color: #F0E3CA;
+    border-radius: 5px;
+    height: 40px;
+    width: 200px;
+    text-align: left;
+    padding: 0px 10px;
+    font-size: 16px;
+    margin: 0;
+    border: 2px solid #FF8303;
+    cursor:  pointer;
+    opacity: 50%;
+}
+input:focus {
+    opacity: 100%;
+    outline: none;
+}
