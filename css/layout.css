@@ -1,0 +1,13 @@
+.input_column{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.input_row{
+    padding: 15px 15px;
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    align-items: center;
+    justify-content: space-between;
+}
