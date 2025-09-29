@@ -15,12 +15,13 @@
     background-color: #1F1E1B;
 }
 
-input {
+input,
+.edit_window input {
     background-color: #1B1A17;
     color: #F0E3CA;
     border-radius: 5px;
     height: 40px;
-    width: 90vw;
+    width: 1700px;
     text-align: left;
     padding: 0px 10px;
     font-size: 16px;
@@ -71,4 +72,19 @@ input:focus {
 .button_task img {
     width: 70%;
     height: 70%;
+}
+.edit_window {
+    display: flex;
+    background-color: #1B1A17;
+    color: #FF8303;
+    border-radius: 5px;
+    height: 500px;
+    width: 100%;
+    text-align: center;
+    font-size: 40px;
+    padding: 15px 15px;
+    border: 2px solid #FF8303;
+}
+.edit_window input {
+    width: 100%;
 }
