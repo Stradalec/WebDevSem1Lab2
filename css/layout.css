@@ -4,10 +4,15 @@
     gap: 5px;
 }
 .input_row{
-    padding: 15px 15px;
     display: flex;
     flex-direction: row;
     gap: 15px;
     align-items: center;
     justify-content: space-between;
+}
+.main {
+    display: flex;
+    flex-direction: column;
+    padding: 15px 15px;
+    gap: 15px;
 }
