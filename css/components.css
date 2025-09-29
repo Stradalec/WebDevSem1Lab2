@@ -1,90 +1,109 @@
 .button_add {
-    background-color: #1B1A17;
-    color: #FF8303;
-    border-radius: 5px;
-    height: 90px;
-    width: 90px;
-    text-align: center;
-    font-size: 40px;
-    padding: 10px 10px;
-    margin: 0;
-    border: 2px solid #FF8303;
-    cursor:  pointer;
+  background-color: #1b1a17;
+  color: #ff8303;
+  border-radius: 5px;
+  height: 90px;
+  width: 90px;
+  text-align: center;
+  font-size: 40px;
+  padding: 10px 10px;
+  margin: 0;
+  border: 2px solid #ff8303;
+  cursor: pointer;
 }
-.button_add:active{
-    background-color: #1F1E1B;
+.button_add:active {
+  background-color: #1f1e1b;
 }
 
 input,
 .edit_window input {
-    background-color: #1B1A17;
-    color: #F0E3CA;
-    border-radius: 5px;
-    height: 40px;
-    width: 1700px;
-    text-align: left;
-    padding: 0px 10px;
-    font-size: 16px;
-    margin: 0;
-    border: 2px solid #FF8303;
-    cursor:  pointer;
-    opacity: 50%;
+  background-color: #1b1a17;
+  color: #f0e3ca;
+  border-radius: 5px;
+  height: 40px;
+  width: 1700px;
+  text-align: left;
+  padding: 0px 10px;
+  font-size: 16px;
+  margin: 0;
+  border: 2px solid #ff8303;
+  cursor: pointer;
+  opacity: 50%;
 }
 input:focus {
-    opacity: 100%;
-    outline: none;
+  opacity: 100%;
+  outline: none;
 }
 .button_dialog {
-    background-color: #1B1A17;
-    color: #F0E3CA;
-    border-radius: 5px;
-    height: 40px;
-    width: 150px;
-    text-align: center;
-    padding: 0px 10px;
-    font-size: 16px;
-    margin: 0;
-    border: 2px solid #FF8303;
-    cursor:  pointer;
-    opacity: 50%;
+  background-color: #1b1a17;
+  color: #f0e3ca;
+  border-radius: 5px;
+  height: 40px;
+  width: 150px;
+  text-align: center;
+  padding: 0px 10px;
+  font-size: 16px;
+  margin: 0;
+  border: 2px solid #ff8303;
+  cursor: pointer;
+  opacity: 50%;
 }
-.button_dialog:hover{
-    opacity: 100%;
+.button_dialog:hover {
+  opacity: 100%;
 }
 
 .button_task {
-    background-color: #1B1A17;
-    display: flex;
-    border-radius: 5px;
-    justify-content: center;
-    align-items: center;
-    height: 50px;
-    width: 50px;
-    align-items: top;
-    font-size: 40px;
-    margin: 0;
-    border: 2px solid #FF8303;
-    cursor:  pointer;
+  background-color: #1b1a17;
+  display: flex;
+  border-radius: 5px;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  width: 50px;
+  align-items: top;
+  font-size: 40px;
+  margin: 0;
+  border: 2px solid #ff8303;
+  cursor: pointer;
 }
-.button_task:active{
-    background-color: #1F1E1B;
+.button_task:active {
+  background-color: #1f1e1b;
 }
 .button_task img {
-    width: 70%;
-    height: 70%;
+  width: 70%;
+  height: 70%;
 }
 .edit_window {
-    display: flex;
-    background-color: #1B1A17;
-    color: #FF8303;
-    border-radius: 5px;
-    height: 500px;
-    width: 100%;
-    text-align: center;
-    font-size: 40px;
-    padding: 15px 15px;
-    border: 2px solid #FF8303;
+  display: flex;
+  flex-direction: column;
+  background-color: #1b1a17;
+  color: #ff8303;
+  border-radius: 5px;
+  height: 500px;
+  width: 100%;
+  text-align: center;
+  font-size: 40px;
+  padding: 15px 15px;
+  border: 2px solid #ff8303;
+  gap: 15px;
 }
 .edit_window input {
-    width: 100%;
+  width: 100%;
+}
+textarea {
+  background-color: #1b1a17;
+  color: #f0e3ca;
+  border-radius: 5px;
+  height: 80%;
+  width: 100%;
+  text-align: left;
+  padding: 0px 10px;
+  font-size: 16px;
+  margin: 0;
+  border: 2px solid #ff8303;
+  cursor: pointer;
+  opacity: 50%;
+}
+textarea:focus {
+  opacity: 100%;
 }
