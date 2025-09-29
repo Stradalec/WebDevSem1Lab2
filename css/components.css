@@ -50,3 +50,25 @@ input:focus {
 .button_dialog:hover{
     opacity: 100%;
 }
+
+.button_task {
+    background-color: #1B1A17;
+    display: flex;
+    border-radius: 5px;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    width: 50px;
+    align-items: top;
+    font-size: 40px;
+    margin: 0;
+    border: 2px solid #FF8303;
+    cursor:  pointer;
+}
+.button_task:active{
+    background-color: #1F1E1B;
+}
+.button_task img {
+    width: 70%;
+    height: 70%;
+}
