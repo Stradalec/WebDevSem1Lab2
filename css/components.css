@@ -34,7 +34,8 @@ input:focus {
   opacity: 100%;
   outline: none;
 }
-.button_dialog {
+.button_dialog,
+.button_share {
   background-color: #1b1a17;
   color: #f0e3ca;
   border-radius: 5px;
@@ -74,7 +75,8 @@ input:focus {
   height: 70%;
 }
 .edit_window,
-.dialog_window {
+.dialog_window,
+.share_window {
   display: flex;
   flex-direction: column;
   background-color: #1b1a17;
@@ -118,4 +120,32 @@ textarea:focus {
 }
 .dialog_window p {
   margin: auto;
+}
+
+.share_window {
+  height: 100px;
+  width: 500px;
+  justify-content: space-between;
+  flex-direction: row;
+  border: 0px solid #f0e3ca;
+}
+.button_share {
+  background-color: #1b1a17;
+  padding: 0 0;
+  display: flex;
+  align-items: center;
+  border-radius: 15px;
+  border: 0px solid #f0e3ca;
+  height: 50px;
+  width: 50px;
+  opacity: 50%;
+}
+.button_share img {
+  margin: auto;
+  height: 50px;
+  width: 50px;
+}
+
+.button_share:hover {
+  opacity: 100%;
 }
