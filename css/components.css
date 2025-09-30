@@ -73,14 +73,15 @@ input:focus {
   width: 70%;
   height: 70%;
 }
-.edit_window {
+.edit_window,
+.dialog_window {
   display: flex;
   flex-direction: column;
   background-color: #1b1a17;
   color: #ff8303;
   border-radius: 5px;
   height: 500px;
-  width: 100%;
+  width: 1800px;
   text-align: center;
   font-size: 40px;
   padding: 15px 15px;
@@ -97,7 +98,7 @@ textarea {
   height: 80%;
   width: 100%;
   text-align: left;
-  padding: 0px 10px;
+  padding: 10px 10px;
   font-size: 16px;
   margin: 0;
   border: 2px solid #ff8303;
@@ -106,4 +107,15 @@ textarea {
 }
 textarea:focus {
   opacity: 100%;
+}
+
+.dialog_window {
+  height: 250px;
+  width: 500px;
+  justify-content: space-between;
+  padding: 30px 30px;
+  color: #f0e3ca;
+}
+.dialog_window p {
+  margin: auto;
 }
