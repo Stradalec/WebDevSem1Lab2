@@ -1,4 +1,5 @@
 const button = document.getElementById("add");
+let taskOptionsButton = document.querySelector(".task_window");
 const editButton = document.getElementsByClassName("button_task_edit");
 const main = document.querySelector("main.main")
 
@@ -23,9 +24,9 @@ button.addEventListener('click', () => {
     addElement.alt = "Удалить заметку";
     addButton.appendChild(addElement);
     taskSection.appendChild(addButton);
+    taskOptionsButton = document.querySelector(".task_window");
 });
-
-editButton.addEventListener('click', () =>{
+editButton[0].addEventListener('click', () =>{
     const editSection = document.createElement("section");
     editSection.className = "edit_window";
     main.appendChild(editSection)
@@ -47,3 +48,29 @@ editButton.addEventListener('click', () =>{
     addSection.appendChild(addElement);
     editSection.appendChild(addSection);
 });
+taskOptionsButton.addEventListener ('click', () => {
+    const taskSection = document.createElement("section");
+    taskSection.className = "input_row_right";
+    main.appendChild(taskSection);
+    let addButton = document.createElement('button');
+    addButton.className = "button_task";
+    let addElement = document.createElement("img");
+    addElement.src = "assets/vector/share.svg";
+    addElement.alt = "Поделиться";
+    addButton.appendChild(addElement);
+    taskSection.appendChild(addButton)
+    addButton = document.createElement('button');
+    addButton.className = "button_task";
+    addElement = document.createElement("img");
+    addElement.src = "assets/vector/edit.svg";
+    addElement.alt = "Редактировать";
+    addButton.appendChild(addElement);
+    taskSection.appendChild(addButton)
+    addButton = document.createElement('button');
+    addButton.className = "button_task";
+    addElement = document.createElement("img");
+    addElement.src = "assets/vector/info.svg";
+    addElement.alt = "Информация";
+    addButton.appendChild(addElement);
+    taskSection.appendChild(addButton)
+}); 
