@@ -35,7 +35,8 @@ input:focus {
   outline: none;
 }
 .button_dialog,
-.button_share {
+.button_share,
+.task_window_button {
   background-color: #1b1a17;
   color: #f0e3ca;
   border-radius: 5px;
@@ -76,7 +77,8 @@ input:focus {
 }
 .edit_window,
 .dialog_window,
-.share_window {
+.share_window,
+.task_window {
   display: flex;
   flex-direction: column;
   background-color: #1b1a17;
@@ -121,7 +123,34 @@ textarea:focus {
 .dialog_window p {
   margin: auto;
 }
-
+.task_window {
+  padding: 15px 30px;
+  height: 140px;
+  justify-content: space-between;
+  width: 1800px;
+  flex-direction: row;
+  gap: 15px;
+}
+.task_window_button {
+  display: flex;
+  flex-direction: column;
+  height: 80%;
+  width: 95%;
+  border: 0px;
+  gap: 15px;
+}
+.task_window_button h2 {
+  height: 70%;
+  width: 40%;
+  font-size: 40px;
+  text-align: left;
+}
+.task_window_button p {
+  height: 30%;
+  width: 40%;
+  font-size: 16px;
+  text-align: left;
+}
 .share_window {
   height: 100px;
   width: 500px;
