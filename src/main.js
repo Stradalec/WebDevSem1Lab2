@@ -1,12 +1,14 @@
 const button = document.getElementById("add");
 let taskOptionsButton = document.querySelector(".task_window");
 const editButton = document.getElementsByClassName("button_task_edit");
+const start_block = document.getElementsByClassName("input_row");
 const main = document.querySelector("main.main")
 
 button.addEventListener('click', () => {
     const taskSection = document.createElement("section");
     taskSection.className = "task_window";
-    main.appendChild(taskSection);
+    const parent = start_block[0].parentNode;
+    parent.insertBefore(taskSection, start_block[0].nextSibling);
     let addButton = document.createElement('button');
     addButton.type = "button";
     addButton.className = "task_window_button";
