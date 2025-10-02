@@ -26,7 +26,6 @@ button.addEventListener('click', () => {
     addElement.alt = "Удалить заметку";
     addButton.appendChild(addElement);
     taskSection.appendChild(addButton);
-    taskOptionsButton = document.querySelector(".task_window");
 });
 editButton[0].addEventListener('click', () =>{
     const editSection = document.createElement("section");
@@ -50,29 +49,41 @@ editButton[0].addEventListener('click', () =>{
     addSection.appendChild(addElement);
     editSection.appendChild(addSection);
 });
-taskOptionsButton.addEventListener ('click', () => {
-    const taskSection = document.createElement("section");
-    taskSection.className = "input_row_right";
-    main.appendChild(taskSection);
-    let addButton = document.createElement('button');
-    addButton.className = "button_task";
-    let addElement = document.createElement("img");
-    addElement.src = "assets/vector/share.svg";
-    addElement.alt = "Поделиться";
-    addButton.appendChild(addElement);
-    taskSection.appendChild(addButton)
-    addButton = document.createElement('button');
-    addButton.className = "button_task";
-    addElement = document.createElement("img");
-    addElement.src = "assets/vector/edit.svg";
-    addElement.alt = "Редактировать";
-    addButton.appendChild(addElement);
-    taskSection.appendChild(addButton)
-    addButton = document.createElement('button');
-    addButton.className = "button_task";
-    addElement = document.createElement("img");
-    addElement.src = "assets/vector/info.svg";
-    addElement.alt = "Информация";
-    addButton.appendChild(addElement);
-    taskSection.appendChild(addButton)
-}); 
+
+
+const observer = new MutationObserver((mutationsList) => {
+  for (let mutation of mutationsList) {
+    console.log('Изменение:', mutation);
+    taskOptionsButton = document.querySelector(".task_window");
+    if (taskOptionsButton) {
+        taskOptionsButton.addEventListener ('click', () => {
+        const taskSection = document.createElement("section");
+        taskSection.className = "input_row_right";
+        main.appendChild(taskSection);
+        let addButton = document.createElement('button');
+        addButton.className = "button_task";
+        let addElement = document.createElement("img");
+        addElement.src = "assets/vector/share.svg";
+        addElement.alt = "Поделиться";
+        addButton.appendChild(addElement);
+        taskSection.appendChild(addButton)
+        addButton = document.createElement('button');
+        addButton.className = "button_task";
+        addElement = document.createElement("img");
+        addElement.src = "assets/vector/edit.svg";
+        addElement.alt = "Редактировать";
+        addButton.appendChild(addElement);
+        taskSection.appendChild(addButton)
+        addButton = document.createElement('button');
+        addButton.className = "button_task";
+        addElement = document.createElement("img");
+        addElement.src = "assets/vector/info.svg";
+        addElement.alt = "Информация";
+        addButton.appendChild(addElement);
+        taskSection.appendChild(addButton)
+    }); 
+}
+  }
+});
+
+observer.observe(document.body, { childList: true, subtree: true });
