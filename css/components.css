@@ -54,7 +54,8 @@ input:focus {
   opacity: 100%;
 }
 
-.button_task {
+.button_task,
+.button_task_edit {
   background-color: #1b1a17;
   display: flex;
   border-radius: 5px;
