@@ -4,7 +4,8 @@
   gap: 5px;
 }
 .input_row,
-.input_row_close {
+.input_row_close,
+.input_row_right {
   display: flex;
   flex-direction: row;
   gap: 15px;
@@ -13,6 +14,10 @@
 }
 .input_row_close {
   justify-content: center;
+}
+.input_row_right {
+  margin-left: 85%;
+  align-items: flex-end;
 }
 .main {
   display: flex;
