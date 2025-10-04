@@ -51,6 +51,8 @@ const buttonInfo = new ButtonInfo("button_task_info", picturePathsMap.get("info"
 const buttonEdit = new ButtonInfo("button_task_edit", picturePathsMap.get("edit"), "Редактировать заметку")
 const buttonDialogCancel = new ButtonInfo("button_dialog", "Отменить", null)
 const buttonDialogSave = new ButtonInfo("button_dialog", "Сохранить", null)
+const buttonDialogYes = new ButtonInfo("button_dialog", "Да", null)
+const buttonDialogNo = new ButtonInfo("button_dialog", "Нет", null)
 
 
 
@@ -96,16 +98,9 @@ const observer = new MutationObserver((mutationsList) => {
     taskOptionsButton = document.querySelector(".task_window_button");
     if (taskOptionsButton) {
         taskOptionsButton.addEventListener ('click', () => {
-        const taskSection = createSection("input_row_right");
-        main.appendChild(taskSection);
-        let addButton = createButton(buttonShare);
-        taskSection.appendChild(addButton)
-        addButton = createButton(buttonEdit);
-        taskSection.appendChild(addButton)
-        addButton = createButton(buttonInfo);
-        taskSection.appendChild(addButton)
+        createTaskButtons()  
     }); 
-}
+    }
   }
 });
 
@@ -116,6 +111,7 @@ function createSection(inputClassName) {
   createdSection.className = inputClassName;
   return createdSection;
 }
+
 function createButton(inputButtonType) {
   const createdButton = document.createElement("button");
   createdButton.type = "button";
@@ -129,4 +125,14 @@ function createButton(inputButtonType) {
     createdButton.textContent = inputButtonType.buttonText;
   }
   return createdButton;
+}
+function createTaskButtons(){
+  const taskSection = createSection("input_row_right");
+  main.appendChild(taskSection);
+  let addButton = createButton(buttonShare);
+  taskSection.appendChild(addButton)
+  addButton = createButton(buttonEdit);
+  taskSection.appendChild(addButton)
+  addButton = createButton(buttonInfo);
+  taskSection.appendChild(addButton)
 }
