@@ -55,7 +55,7 @@ const buttonDialogYes = new ButtonInfo("button_dialog", "Да", null)
 const buttonDialogNo = new ButtonInfo("button_dialog", "Нет", null)
 
 
-
+let taskIndex = 0;
 button.addEventListener('click', () => {
     const taskSection = createSection("task_window")
     const parent = start_block[0].parentNode;
@@ -116,6 +116,11 @@ function createButton(inputButtonType) {
   const createdButton = document.createElement("button");
   createdButton.type = "button";
   createdButton.className = inputButtonType.className;
+  if (inputButtonType.className == "task_window_button") {
+    createdButton.id = taskIndex;
+    ++taskIndex;
+  }
+  
   if (inputButtonType.picture) {
     let addElement = document.createElement("img");
       addElement.src = inputButtonType.picture;
