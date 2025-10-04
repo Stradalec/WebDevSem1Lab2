@@ -5,10 +5,7 @@ const start_block = document.getElementsByClassName("input_row");
 const main = document.querySelector("main.main");
 const createTask = document.querySelector(".input_column");
 const createTaskFields = createTask.querySelectorAll("input");
-const buttonClassNames = new Map()
-buttonClassNames.set("task window", "task_window_button")
-buttonClassNames.set("task", "button_task")
-buttonClassNames.set("dialog", "button_dialog")
+
 const picturePathsMap = new Map()
 picturePathsMap.set("delete", "assets/vector/delete.svg")
 picturePathsMap.set("share", "assets/vector/share.svg")
@@ -48,7 +45,10 @@ class ButtonInfo {
 }
 
 const buttonWindow = new ButtonInfo("task_window_button", null, null)
-const buttonDelete = new ButtonInfo("button_task", picturePathsMap.get("delete"), "Удалить заметку")
+const buttonDelete = new ButtonInfo("button_task_delete", picturePathsMap.get("delete"), "Удалить заметку")
+const buttonShare = new ButtonInfo("button_task_share", picturePathsMap.get("share"), "Поделиться")
+const buttonInfo = new ButtonInfo("button_task_info", picturePathsMap.get("info"), "Дополнительно")
+const buttonEdit = new ButtonInfo("button_task_edit", picturePathsMap.get("edit"), "Редактировать заметку")
 const buttonDialogCancel = new ButtonInfo("button_dialog", "Отменить", null)
 const buttonDialogSave = new ButtonInfo("button_dialog", "Сохранить", null)
 
@@ -98,23 +98,11 @@ const observer = new MutationObserver((mutationsList) => {
         taskOptionsButton.addEventListener ('click', () => {
         const taskSection = createSection("input_row_right");
         main.appendChild(taskSection);
-        let addButton = createButton(buttonClassNames.get("task"));
-        let addElement = document.createElement("img");
-        addElement.src = "assets/vector/share.svg";
-        addElement.alt = "Поделиться";
-        addButton.appendChild(addElement);
+        let addButton = createButton(buttonShare);
         taskSection.appendChild(addButton)
-        addButton = createButton(buttonClassNames.get("task"))
-        addElement = document.createElement("img");
-        addElement.src = "assets/vector/edit.svg";
-        addElement.alt = "Редактировать";
-        addButton.appendChild(addElement);
+        addButton = createButton(buttonEdit);
         taskSection.appendChild(addButton)
-        addButton = createButton(buttonClassNames.get("task"))
-        addElement = document.createElement("img");
-        addElement.src = "assets/vector/info.svg";
-        addElement.alt = "Информация";
-        addButton.appendChild(addElement);
+        addButton = createButton(buttonInfo);
         taskSection.appendChild(addButton)
     }); 
 }
