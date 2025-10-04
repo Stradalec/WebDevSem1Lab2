@@ -56,7 +56,9 @@ input:focus {
   opacity: 100%;
 }
 
-.button_task,
+.button_task_delete,
+.button_task_share,
+.button_task_info,
 .button_task_edit {
   background-color: #1b1a17;
   display: flex;
@@ -71,10 +73,16 @@ input:focus {
   border: 2px solid #ff8303;
   cursor: pointer;
 }
-.button_task:active {
+.button_task_delete:active,
+.button_task_share:active,
+.button_task_info:active,
+.button_task_edit:active {
   background-color: #1f1e1b;
 }
-.button_task img {
+.button_task_delete img,
+.button_task_share img ,
+.button_task_info img,
+.button_task_edit img{
   width: 70%;
   height: 70%;
 }
