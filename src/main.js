@@ -2,7 +2,9 @@ const button = document.getElementById("add");
 let taskOptionsButton = document.querySelector(".task_window_button");
 const editButton = document.getElementsByClassName("button_task_edit");
 const start_block = document.getElementsByClassName("input_row");
-const main = document.querySelector("main.main")
+const main = document.querySelector("main.main");
+const createTask = document.querySelector(".input_column");
+const createTaskFields = createTask.querySelectorAll("input");
 const buttonClassNames = new Map()
 buttonClassNames.set("task window", "task_window_button")
 buttonClassNames.set("task", "button_task")
@@ -20,10 +22,10 @@ button.addEventListener('click', () => {
 
     let addButton = createButton(buttonClassNames.get("task window"));
     let addElement = document.createElement('h2');
-    addElement.textContent = "Task Title";
+    addElement.textContent = createTaskFields[0].value;
     addButton.appendChild(addElement);
     addElement = document.createElement('p');
-    addElement.textContent = "Task description";
+    addElement.textContent = createTaskFields[1].value;
     addButton.appendChild(addElement);
     taskSection.appendChild(addButton);
 
