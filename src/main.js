@@ -15,12 +15,51 @@ picturePathsMap.set("share", "assets/vector/share.svg")
 picturePathsMap.set("edit", "assets/vector/edit.svg")
 picturePathsMap.set("info", "assets/vector/info.svg")
 
+class ButtonInfo {
+  className = "default";
+  picture = null;
+  buttonText = "default";
+  pictureText = "default"
+
+  constructor(className, additional, description) {
+    this.className = className;
+    const additionalToString = String(additional);
+    if (additionalToString.includes("/")) {
+      this.picture = additional;
+      this.buttonText = null;
+      this.pictureText = description;
+    } else {
+      this.picture = null;
+      this.buttonText = additional;
+      this.pictureText = null;
+    }
+  }
+  
+    get className(){
+      return this._className;
+    }
+    get picture() {
+      return this._picture;
+    }
+
+    get buttonText() {
+      return this._buttonText;
+    }
+}
+
+const buttonWindow = new ButtonInfo("task_window_button", null, null)
+const buttonDelete = new ButtonInfo("button_task", picturePathsMap.get("delete"), "Удалить заметку")
+const buttonDialogCancel = new ButtonInfo("button_dialog", "Отменить", null)
+const buttonDialogSave = new ButtonInfo("button_dialog", "Сохранить", null)
+
+
+
 button.addEventListener('click', () => {
     const taskSection = createSection("task_window")
     const parent = start_block[0].parentNode;
     parent.insertBefore(taskSection, start_block[0].nextSibling);
 
-    let addButton = createButton(buttonClassNames.get("task window"));
+    let addButton = createButton(buttonWindow);
     let addElement = document.createElement('h2');
     addElement.textContent = createTaskFields[0].value;
     addButton.appendChild(addElement);
@@ -29,11 +68,7 @@ button.addEventListener('click', () => {
     addButton.appendChild(addElement);
     taskSection.appendChild(addButton);
 
-    addButton = createButton(buttonClassNames.get("task"));
-    addElement = document.createElement("img");
-    addElement.src = picturePathsMap.get("delete");
-    addElement.alt = "Удалить заметку";
-    addButton.appendChild(addElement);
+    addButton = createButton(buttonDelete);
     taskSection.appendChild(addButton);
 });
 editButton[0].addEventListener('click', () =>{
@@ -47,11 +82,9 @@ editButton[0].addEventListener('click', () =>{
     editSection.appendChild(addElement);
     let addSection = document.createElement("div")
     addSection.className = "input_row_close";
-    addElement = createButton(buttonClassNames.get("dialog"));; 
-    addElement.textContent = "Отменить";
+    addElement = createButton(buttonDialogCancel);; 
     addSection.appendChild(addElement)
-    addElement = createButton(buttonClassNames.get("dialog"));;
-    addElement.textContent = "Сохранить";
+    addElement = createButton(buttonDialogSave);;
     addSection.appendChild(addElement);
     editSection.appendChild(addSection);
 });
@@ -95,9 +128,17 @@ function createSection(inputClassName) {
   createdSection.className = inputClassName;
   return createdSection;
 }
-function createButton(inputClassName) {
+function createButton(inputButtonType) {
   const createdButton = document.createElement("button");
-  createButton.type = "button";
-  createdButton.className = inputClassName;
+  createdButton.type = "button";
+  createdButton.className = inputButtonType.className;
+  if (inputButtonType.picture) {
+    let addElement = document.createElement("img");
+      addElement.src = inputButtonType.picture;
+      addElement.alt = inputButtonType.description;
+      createdButton.appendChild(addElement);
+  } else {
+    createdButton.textContent = inputButtonType.buttonText;
+  }
   return createdButton;
 }
