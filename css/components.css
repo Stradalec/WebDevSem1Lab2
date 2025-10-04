@@ -50,7 +50,9 @@ input:focus {
   cursor: pointer;
   opacity: 50%;
 }
-.button_dialog:hover {
+.button_dialog:hover,
+.task_window_button:hover,
+.button_share:hover {
   opacity: 100%;
 }
 
