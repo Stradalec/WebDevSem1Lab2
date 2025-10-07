@@ -69,8 +69,8 @@ button.addEventListener('click', () => {
     addElement.textContent = createTaskFields[1].value;
     addButton.appendChild(addElement);
     taskSection.appendChild(addButton);
-
     addButton = createButton(buttonDelete);
+    addButton.id = taskIndex;
     taskSection.appendChild(addButton);
     const taskButtonsSection = createTaskButtons()
     parent = taskSection.parentNode;
@@ -94,16 +94,26 @@ editButton[0].addEventListener('click', () =>{
     editSection.appendChild(addSection);
 });
 
-
+main.addEventListener('click', event => {
+  if (event.target.closest('.task_window_button')) {
+    const pressedButton = event.target.closest('.task_window_button');
+    const parentTaskWindow = pressedButton.closest(".task_window")
+    const parentButtonsPanel = document.querySelectorAll(".input_row_right")
+    const targetButtonsPanel = Array.from(parentButtonsPanel).find(element => element.id == parentTaskWindow.id);
+    if (targetButtonsPanel.style.display == "none") {
+      targetButtonsPanel.style.display = "flex"
+    }
+    else  {
+      targetButtonsPanel.style.display = "none"
+    }
+    console.log(parentTaskWindow.id, targetButtonsPanel.id)
+  }
+});
 const observer = new MutationObserver((mutationsList) => {
   for (let mutation of mutationsList) {
     console.log('Изменение:', mutation);
     taskOptionsButton = document.querySelector(".task_window_button");
-    if (taskOptionsButton) {
-        taskOptionsButton.addEventListener ('click', () => {
-        
-    }); 
-    }
+    
   }
 });
 
@@ -112,6 +122,10 @@ observer.observe(document.body, { childList: true, subtree: true });
 function createSection(inputClassName) {
   const createdSection = document.createElement("section");
   createdSection.className = inputClassName;
+  if (createdSection.className == "task_window") {
+    createdSection.id = taskIndex;
+    
+  }
   return createdSection;
 }
 
@@ -119,10 +133,6 @@ function createButton(inputButtonType) {
   const createdButton = document.createElement("button");
   createdButton.type = "button";
   createdButton.className = inputButtonType.className;
-  if (inputButtonType.className == "task_window_button") {
-    createdButton.id = taskIndex;
-    ++taskIndex;
-  }
   
   if (inputButtonType.picture) {
     let addElement = document.createElement("img");
@@ -134,13 +144,18 @@ function createButton(inputButtonType) {
   }
   return createdButton;
 }
+
 function createTaskButtons(){
   const taskSection = createSection("input_row_right");
+  taskSection.id = taskIndex;
+  taskSection.style.display = "none";
   let addButton = createButton(buttonShare);
   taskSection.appendChild(addButton)
   addButton = createButton(buttonEdit);
   taskSection.appendChild(addButton)
   addButton = createButton(buttonInfo);
   taskSection.appendChild(addButton)
+  ++taskIndex;
   return taskSection;
 }
+
