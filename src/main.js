@@ -112,10 +112,20 @@ main.addEventListener('click', event => {
     const parentTaskWindow = pressedButton.parentNode
     const parentButtonsPanel = document.querySelectorAll(".input_row_right")
     const targetButtonsPanel = Array.from(parentButtonsPanel).find(element => element.id == parentTaskWindow.id);
-    parentTaskWindow.remove()
-    console.log("Задача ушла искать своё счастье")
-    targetButtonsPanel.remove()
-    console.log("Вместе с панелькой кнопок")
+    showModalWindow()
+    modalWindowResult().then(result =>{
+      if (result) {
+      parentTaskWindow.remove()
+      console.log("Задача ушла искать своё счастье")
+      targetButtonsPanel.remove()
+      console.log("Вместе с панелькой кнопок")
+      hideModalWindow()
+    } else {
+      hideModalWindow()
+    }
+    })
+    
+    
   }
 });
 const observer = new MutationObserver((mutationsList) => {
@@ -168,6 +178,34 @@ function createTaskButtons(){
   return taskSection;
 }
 
-function modalWindow(){
-  
+function showModalWindow(){
+  const modalWindow = document.querySelector(".dialog_window");
+  modalWindow.style.display = "flex"
+}
+function hideModalWindow(){
+  const modalWindow = document.querySelector(".dialog_window");
+  modalWindow.style.display = "none"
+}
+
+function modalWindowResult() {
+  return new Promise((result) => {
+    const modalWindow = document.querySelector(".dialog_window");
+    const buttonConfirm = document.getElementById("delete_confirm")
+    const buttonCancel = document.getElementById("delete_cancel")
+   function cleanup() {
+      buttonConfirm.removeEventListener('click', onConfirm);
+      buttonCancel.removeEventListener('click', onCancel);
+    }
+    function onConfirm() {
+      cleanup();
+      result(true);
+    }
+
+    function onCancel() {
+      cleanup();
+      result(false);
+    }
+    buttonConfirm.addEventListener('click', onConfirm);
+    buttonCancel.addEventListener('click', onCancel);
+  })
 }
