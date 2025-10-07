@@ -58,7 +58,7 @@ const buttonDialogNo = new ButtonInfo("button_dialog", "Нет", null)
 let taskIndex = 0;
 button.addEventListener('click', () => {
     const taskSection = createSection("task_window")
-    const parent = start_block[0].parentNode;
+    let parent = start_block[0].parentNode;
     parent.insertBefore(taskSection, start_block[0].nextSibling);
 
     let addButton = createButton(buttonWindow);
@@ -72,6 +72,9 @@ button.addEventListener('click', () => {
 
     addButton = createButton(buttonDelete);
     taskSection.appendChild(addButton);
+    const taskButtonsSection = createTaskButtons()
+    parent = taskSection.parentNode;
+    parent.insertBefore(taskButtonsSection, taskSection.nextSibling);  
 });
 editButton[0].addEventListener('click', () =>{
     const editSection = createSection("edit_window");
@@ -98,7 +101,7 @@ const observer = new MutationObserver((mutationsList) => {
     taskOptionsButton = document.querySelector(".task_window_button");
     if (taskOptionsButton) {
         taskOptionsButton.addEventListener ('click', () => {
-        createTaskButtons()  
+        
     }); 
     }
   }
@@ -133,11 +136,11 @@ function createButton(inputButtonType) {
 }
 function createTaskButtons(){
   const taskSection = createSection("input_row_right");
-  main.appendChild(taskSection);
   let addButton = createButton(buttonShare);
   taskSection.appendChild(addButton)
   addButton = createButton(buttonEdit);
   taskSection.appendChild(addButton)
   addButton = createButton(buttonInfo);
   taskSection.appendChild(addButton)
+  return taskSection;
 }
