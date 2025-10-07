@@ -106,7 +106,16 @@ main.addEventListener('click', event => {
     else  {
       targetButtonsPanel.style.display = "none"
     }
-    console.log(parentTaskWindow.id, targetButtonsPanel.id)
+  }
+   if (event.target.closest('.button_task_delete')) {
+    const pressedButton = event.target.closest('.button_task_delete');
+    const parentTaskWindow = pressedButton.parentNode
+    const parentButtonsPanel = document.querySelectorAll(".input_row_right")
+    const targetButtonsPanel = Array.from(parentButtonsPanel).find(element => element.id == parentTaskWindow.id);
+    parentTaskWindow.remove()
+    console.log("Задача ушла искать своё счастье")
+    targetButtonsPanel.remove()
+    console.log("Вместе с панелькой кнопок")
   }
 });
 const observer = new MutationObserver((mutationsList) => {
@@ -159,3 +168,6 @@ function createTaskButtons(){
   return taskSection;
 }
 
+function modalWindow(){
+  
+}
