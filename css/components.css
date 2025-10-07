@@ -125,6 +125,9 @@ textarea:focus {
 }
 
 .dialog_window {
+  display: none;
+  position: fixed;
+  top: 40%;
   height: 250px;
   width: 500px;
   justify-content: space-between;
