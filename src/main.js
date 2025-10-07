@@ -76,9 +76,6 @@ button.addEventListener('click', () => {
     parent = taskSection.parentNode;
     parent.insertBefore(taskButtonsSection, taskSection.nextSibling);  
 });
-editButton[0].addEventListener('click', () =>{
-    createEditWindow("терпим", "Терпим")
-});
 
 main.addEventListener('click', event => {
   if (event.target.closest('.task_window_button')) {
@@ -127,6 +124,25 @@ main.addEventListener('click', event => {
       deleteEditWindow()
     } else {
       deleteEditWindow()
+    }
+    })
+  }
+  if (event.target.closest('.button_task_share')) {
+    const pressedButton = event.target.closest('.button_task_share');
+    const parentTaskPanel = pressedButton.parentNode
+    const parentTaskWindow = document.querySelectorAll(".task_window")
+    const targetWindow = Array.from(parentTaskWindow).find(element => element.id == parentTaskPanel.id);
+    console.log(targetWindow.id, parentTaskPanel.id)
+    const taskHeader = targetWindow.querySelector("h2")
+    const taskDescription = targetWindow.querySelector("p")
+    console.log(taskHeader.textContent, taskDescription.textContent)
+    showShareWindow()
+    shareWindowResult().then(result => {
+      if (result) {
+      console.log("Нажми на кнопку, получишь результат, и твоя мечта осуществится")
+      hideShareWindow()
+    } else {
+      hideShareWindow()
     }
     })
   }
@@ -252,7 +268,6 @@ function editWindowResult() {
     buttonCancel.addEventListener('click', onCancel);
   })
 }
-
 function deleteEditWindow(){
   const editSection = document.querySelector(".edit_window")
   editSection.remove()
@@ -265,4 +280,32 @@ function taskUpdate(id) {
   const targetWindow = Array.from(allTaskWindow).find(element => element.id == id);
   targetWindow.querySelector("h2").textContent = header.value
   targetWindow.querySelector("p").textContent = description.value
+}
+function shareWindowResult() {
+  return new Promise((result) => {
+  const buttonCopy = document.querySelectorAll(".button_share")
+  function cleanup() {
+      buttonCopy[0].removeEventListener('click', onConfirm);
+    }
+    function onConfirm() {
+      cleanup();
+      result(true);
+    }
+
+    function onCancel() {
+      cleanup();
+      result(false);
+    }
+    buttonCopy[0].addEventListener('click', onConfirm);
+
+  })
+}
+function showShareWindow() {
+  const shareWindow = document.querySelector(".share_window");
+  shareWindow.style.display = "flex"
+}
+
+function hideShareWindow() {
+  const shareWindow = document.querySelector(".share_window");
+  shareWindow.style.display = "none"
 }

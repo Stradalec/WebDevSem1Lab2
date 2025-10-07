@@ -170,6 +170,9 @@ textarea:focus {
   text-align: left;
 }
 .share_window {
+  display: none;
+  position: fixed;
+  top: 90%;
   height: 100px;
   width: 500px;
   justify-content: space-between;
