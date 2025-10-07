@@ -106,6 +106,10 @@ input:focus {
 .edit_window input {
   width: 100%;
 }
+.edit_window {
+  position: fixed;
+  top: 50%;
+}
 textarea {
   background-color: #1b1a17;
   color: #f0e3ca;

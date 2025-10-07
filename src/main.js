@@ -77,21 +77,7 @@ button.addEventListener('click', () => {
     parent.insertBefore(taskButtonsSection, taskSection.nextSibling);  
 });
 editButton[0].addEventListener('click', () =>{
-    const editSection = createSection("edit_window");
-    main.appendChild(editSection)
-    let addElement = document.createElement('input');
-    addElement.placeholder = "Mini input";
-    editSection.appendChild(addElement);
-    addElement = document.createElement("textarea");
-    addElement.placeholder = "Max Input";
-    editSection.appendChild(addElement);
-    let addSection = document.createElement("div")
-    addSection.className = "input_row_close";
-    addElement = createButton(buttonDialogCancel);; 
-    addSection.appendChild(addElement)
-    addElement = createButton(buttonDialogSave);;
-    addSection.appendChild(addElement);
-    editSection.appendChild(addSection);
+    createEditWindow("терпим", "Терпим")
 });
 
 main.addEventListener('click', event => {
@@ -124,14 +110,22 @@ main.addEventListener('click', event => {
       hideModalWindow()
     }
     })
-    
-    
+  }
+  if (event.target.closest('.button_task_edit')) {
+    const pressedButton = event.target.closest('.button_task_edit');
+    const parentTaskPanel = pressedButton.parentNode
+    const parentTaskWindow = document.querySelectorAll(".task_window")
+    const targetWindow = Array.from(parentTaskWindow).find(element => element.id == parentTaskPanel.id);
+    console.log(targetWindow.id, parentTaskPanel.id)
+    const taskHeader = targetWindow.querySelector("h2")
+    const taskDescription = targetWindow.querySelector("p")
+    console.log(taskHeader.textContent, taskDescription.textContent)
+    createEditWindow(taskHeader.textContent, taskDescription.textContent)
   }
 });
 const observer = new MutationObserver((mutationsList) => {
   for (let mutation of mutationsList) {
     console.log('Изменение:', mutation);
-    taskOptionsButton = document.querySelector(".task_window_button");
     
   }
 });
@@ -208,4 +202,21 @@ function modalWindowResult() {
     buttonConfirm.addEventListener('click', onConfirm);
     buttonCancel.addEventListener('click', onCancel);
   })
+}
+function createEditWindow(headerText, descriptionText){
+    const editSection = createSection("edit_window");
+    main.appendChild(editSection)
+    let addElement = document.createElement('input');
+    addElement.placeholder = headerText;
+    editSection.appendChild(addElement);
+    addElement = document.createElement("textarea");
+    addElement.placeholder = descriptionText;
+    editSection.appendChild(addElement);
+    let addSection = document.createElement("div")
+    addSection.className = "input_row_close";
+    addElement = createButton(buttonDialogCancel);; 
+    addSection.appendChild(addElement)
+    addElement = createButton(buttonDialogSave);;
+    addSection.appendChild(addElement);
+    editSection.appendChild(addSection);
 }
