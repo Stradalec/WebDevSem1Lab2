@@ -121,6 +121,14 @@ main.addEventListener('click', event => {
     const taskDescription = targetWindow.querySelector("p")
     console.log(taskHeader.textContent, taskDescription.textContent)
     createEditWindow(taskHeader.textContent, taskDescription.textContent)
+    editWindowResult().then(result => {
+      if (result) {
+      taskUpdate(targetWindow.id)  
+      deleteEditWindow()
+    } else {
+      deleteEditWindow()
+    }
+    })
   }
 });
 const observer = new MutationObserver((mutationsList) => {
@@ -214,9 +222,47 @@ function createEditWindow(headerText, descriptionText){
     editSection.appendChild(addElement);
     let addSection = document.createElement("div")
     addSection.className = "input_row_close";
-    addElement = createButton(buttonDialogCancel);; 
+    addElement = createButton(buttonDialogCancel); 
+    addElement.id = "cancel"
     addSection.appendChild(addElement)
-    addElement = createButton(buttonDialogSave);;
+    addElement = createButton(buttonDialogSave);
+    addElement.id = "save"
     addSection.appendChild(addElement);
     editSection.appendChild(addSection);
+}
+function editWindowResult() {
+  return new Promise((result) => {
+    const editWindow = document.querySelector(".edit_window");
+    const buttonSave = document.getElementById("save")
+    const buttonCancel = document.getElementById("cancel")
+   function cleanup() {
+      buttonSave.removeEventListener('click', onConfirm);
+      buttonCancel.removeEventListener('click', onCancel);
+    }
+    function onConfirm() {
+      cleanup();
+      result(true);
+    }
+
+    function onCancel() {
+      cleanup();
+      result(false);
+    }
+    buttonSave.addEventListener('click', onConfirm);
+    buttonCancel.addEventListener('click', onCancel);
+  })
+}
+
+function deleteEditWindow(){
+  const editSection = document.querySelector(".edit_window")
+  editSection.remove()
+}
+function taskUpdate(id) {
+  const editWindow = document.querySelector(".edit_window");
+  const header =  editWindow.querySelector("input")
+  const description = editWindow.querySelector("textarea")
+  const allTaskWindow = document.querySelectorAll(".task_window")
+  const targetWindow = Array.from(allTaskWindow).find(element => element.id == id);
+  targetWindow.querySelector("h2").textContent = header.value
+  targetWindow.querySelector("p").textContent = description.value
 }
