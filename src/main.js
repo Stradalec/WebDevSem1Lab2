@@ -154,6 +154,7 @@ main.addEventListener('click', event => {
     showShareWindow()
     shareWindowResult().then(result => {
       if (result) {
+      navigator.clipboard.writeText(taskHeader.textContent + " " + taskDescription.textContent)
       console.log("Нажми на кнопку, получишь результат, и твоя мечта осуществится")
       hideShareWindow()
     } else {
@@ -252,10 +253,10 @@ function createEditWindow(headerText, descriptionText){
     const editSection = createSection("edit_window");
     main.appendChild(editSection)
     let addElement = document.createElement('input');
-    addElement.placeholder = headerText;
+    addElement.value = headerText;
     editSection.appendChild(addElement);
     addElement = document.createElement("textarea");
-    addElement.placeholder = descriptionText;
+    addElement.value = descriptionText;
     editSection.appendChild(addElement);
     let addSection = document.createElement("div")
     addSection.className = "input_row_close";
@@ -306,9 +307,9 @@ function shareWindowResult() {
   return new Promise((result) => {
   const buttonCopy = document.querySelectorAll(".button_share")
   function cleanup() {
-      buttonCopy[0].removeEventListener('click', onConfirm);
+      buttonCopy[0].removeEventListener('click', Copy);
     }
-    function onConfirm() {
+    function Copy() {
       cleanup();
       result(true);
     }
@@ -317,7 +318,7 @@ function shareWindowResult() {
       cleanup();
       result(false);
     }
-    buttonCopy[0].addEventListener('click', onConfirm);
+    buttonCopy[0].addEventListener('click', Copy);
 
   })
 }
