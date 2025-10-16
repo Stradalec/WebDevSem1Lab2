@@ -153,11 +153,34 @@ main.addEventListener('click', event => {
     console.log(taskHeader.textContent, taskDescription.textContent)
     showShareWindow()
     shareWindowResult().then(result => {
-      if (result) {
+      if (result == "cp") {
       navigator.clipboard.writeText(taskHeader.textContent + " " + taskDescription.textContent)
-      console.log("Нажми на кнопку, получишь результат, и твоя мечта осуществится")
+      const notification = document.createElement('div');
+      const notificationText = document.createElement('p');
+      notificationText.textContent = 'Текст успешно скопирован!';
+      notification.className = 'dialog_window';
+      notification.style.display = "flex"
+      notification.appendChild(notificationText)
+      main.appendChild(notification);
+
+      setTimeout(() => {
+        notification.remove();
+      }, 2000);
       hideShareWindow()
-    } else {
+    } else if (result == "vk") {
+      shareOnSocial(result, taskHeader.textContent, taskDescription.textContent)
+      hideShareWindow()
+    }
+    else if (result == "tg") {
+      shareOnSocial(result, taskHeader.textContent, taskDescription.textContent)
+      hideShareWindow()
+    }
+    else if (result == "wp") {
+      shareOnSocial(result, taskHeader.textContent, taskDescription.textContent)
+      hideShareWindow()
+    }
+    else if (result == "fc") {
+      shareOnSocial(result, taskHeader.textContent, taskDescription.textContent)
       hideShareWindow()
     }
     })
@@ -311,14 +334,30 @@ function shareWindowResult() {
     }
     function Copy() {
       cleanup();
-      result(true);
+      result("cp");
     }
 
-    function onCancel() {
+    function toVK() {
       cleanup();
-      result(false);
+      result("vk");
+    }
+    function toTelegram() {
+      cleanup();
+      result("tg");
+    }
+    function toWhatsapp() {
+      cleanup();
+      result("wp");
+    }
+    function toFacebook() {
+      cleanup();
+      result("fc");
     }
     buttonCopy[0].addEventListener('click', Copy);
+    buttonCopy[1].addEventListener('click', toVK);
+    buttonCopy[2].addEventListener('click', toTelegram);
+    buttonCopy[3].addEventListener('click', toWhatsapp);
+    buttonCopy[4].addEventListener('click', toFacebook);
 
   })
 }
@@ -330,4 +369,30 @@ function showShareWindow() {
 function hideShareWindow() {
   const shareWindow = document.querySelector(".share_window");
   shareWindow.style.display = "none"
+}
+
+function shareOnSocial(socialPlatform, header, description) {
+  let shareUrl;
+  const encodedStart = encodeURIComponent("Делитесь своими бессмысленными заметками вместе с нами!")
+  const encodedHeader = encodeURIComponent(header);
+  const encodedDescription = encodeURIComponent(description);
+  const encodedCloser = encodeURIComponent("Stradalets зачем-то добавил эту функциональность в свою лабораторную работу. Вот ему делать нечего...");
+  
+  switch (socialPlatform) {
+    case 'vk':
+      shareUrl = 'https://vk.com/share.php?text=' + encodedHeader + '%20' + encodedDescription; //Оно не работает, т.к. поле комментария пустое. Я старался
+      break;
+    case 'tg':
+      shareUrl = 'https://t.me/share/url?url=' + encodedStart  + '&text=' + encodedHeader + " " + encodedDescription + "%0A" + encodedCloser;
+      break;
+    case 'wp':
+      shareUrl = 'https://api.whatsapp.com/send?text=' + encodedHeader + '%20' + encodedDescription;
+      break;
+    case 'fc':
+      shareUrl = 'https://www.facebook.com/sharer/sharer.php?u=' + encodedHeader + '&quote=' + encodedDescription;
+      break;
+    default:
+      return;
+  }
+  window.open(shareUrl, '_blank');
 }
