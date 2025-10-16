@@ -64,10 +64,24 @@ button.addEventListener('click', () => {
 
     let addButton = createButton(buttonWindow);
     let addElement = document.createElement('h2');
-    addElement.textContent = createTaskFields[0].value;
+    if (createTaskFields[0].value) {
+      addElement.textContent = createTaskFields[0].value;
+    } else {
+      addElement.textContent = "Неизвестен"
+    }
+    
+    createTaskFields[0].value = null
+    createTaskFields[0].placeholder = "Название"  
     addButton.appendChild(addElement);
     addElement = document.createElement('p');
     addElement.textContent = createTaskFields[1].value;
+    if (createTaskFields[1].value) {
+      addElement.textContent = createTaskFields[1].value;
+    } else {
+      addElement.textContent = "Без названия"
+    }
+    createTaskFields[1].value = null
+    createTaskFields[1].placeholder = "Описание"
     addButton.appendChild(addElement);
     taskSection.appendChild(addButton);
     addButton = createButton(buttonDelete);
