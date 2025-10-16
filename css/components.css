@@ -94,3 +94,23 @@ textarea:focus {
   flex-direction: row;
   border: 0px solid #f0e3ca;
 }
+
+.no_task_window {
+  display: flex;
+  padding: 15px 30px;
+  height: 250px;
+  width: 500px;
+  justify-content: space-between;
+  text-align: center;
+  flex-direction: column;
+  border: 0px solid #f0e3ca;
+}
+.no_task_window div {
+  margin: 0 auto;
+  height: 10px;
+  width: 70%;
+  background-color: #ff8303;
+}
+.no_task_window p {
+    font-size: 32px;
+}
