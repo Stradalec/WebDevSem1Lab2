@@ -98,7 +98,7 @@ textarea:focus {
 .no_task_window {
   display: flex;
   padding: 15px 30px;
-  height: 250px;
+  height: 200px;
   width: 500px;
   justify-content: space-between;
   text-align: center;
@@ -108,8 +108,9 @@ textarea:focus {
 .no_task_window div {
   margin: 0 auto;
   height: 10px;
-  width: 70%;
+  width: 50%;
   background-color: #ff8303;
+  border-radius: 5px;
 }
 .no_task_window p {
     font-size: 32px;
