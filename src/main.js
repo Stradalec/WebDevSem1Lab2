@@ -185,6 +185,18 @@ main.addEventListener('click', event => {
     }
     })
   }
+  if (event.target.closest(".button_task_info")) {
+      const notification = document.createElement('div');
+      const notificationText = document.createElement('p');
+      notificationText.textContent = 'В ТЗ не было - делать не буду!';
+      notification.className = 'dialog_window';
+      notification.style.display = "flex"
+      notification.appendChild(notificationText)
+      main.appendChild(notification);
+      setTimeout(() => {
+        notification.remove();
+      }, 2000); 
+  }
 });
 const observer = new MutationObserver((mutationsList) => {
   for (let mutation of mutationsList) {
