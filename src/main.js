@@ -5,6 +5,7 @@ const start_block = document.getElementsByClassName("input_row");
 const main = document.querySelector("main.main");
 const createTask = document.querySelector(".input_column");
 const createTaskFields = createTask.querySelectorAll("input");
+const noTaskWindow = document.querySelector(".no_task_window");
 
 const picturePathsMap = new Map()
 picturePathsMap.set("delete", "assets/vector/delete.svg")
@@ -150,7 +151,13 @@ main.addEventListener('click', event => {
 const observer = new MutationObserver((mutationsList) => {
   for (let mutation of mutationsList) {
     console.log('Изменение:', mutation);
-    
+    let taskExist =  document.querySelector(".task_window");
+    if (taskExist) {
+      noTaskWindow.style.display = "none"
+    }
+    else {
+      noTaskWindow.style.display = "flex"
+    }
   }
 });
 
