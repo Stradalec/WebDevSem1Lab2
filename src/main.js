@@ -55,10 +55,49 @@ const buttonDialogSave = new ButtonInfo("button_dialog", "Сохранить", n
 const buttonDialogYes = new ButtonInfo("button_dialog", "Да", null)
 const buttonDialogNo = new ButtonInfo("button_dialog", "Нет", null)
 
+document.addEventListener('DOMContentLoaded', function() {
+const storedTasks = localStorage.getItem('tasks');
 
+let tasks = [];
+if (storedTasks) {
+    try {
+        tasks = JSON.parse(storedTasks);
+    } catch (e) {
+        console.error("Ошибка парсинга задач из localStorage", e);
+    }
+}
+
+tasks.forEach(task => { 
+    const taskSection = createSection("task_window")
+    let savedTitle = "Неизвестен"
+    let savedDescription = "Без названия"
+    let parent = start_block[0].parentNode;
+    parent.insertBefore(taskSection, start_block[0].nextSibling);
+    console.log(task.title); 
+
+    let addButton = createButton(buttonWindow);
+    let addElement = document.createElement('h2');
+    addElement.textContent = task.title;
+    addButton.appendChild(addElement);
+    addElement = document.createElement('p');
+    console.log(task.description); 
+    addElement.textContent = task.description;
+    addButton.appendChild(addElement);
+    taskSection.appendChild(addButton);
+    addButton = createButton(buttonDelete);
+    addButton.id = taskIndex;
+    taskSection.appendChild(addButton);
+    const taskButtonsSection = createTaskButtons()
+    parent = taskSection.parentNode;
+    parent.insertBefore(taskButtonsSection, taskSection.nextSibling);
+});
+
+});
 let taskIndex = 0;
 button.addEventListener('click', () => {
     const taskSection = createSection("task_window")
+    let savedTitle = "Неизвестен"
+    let savedDescription = "Без названия"
     let parent = start_block[0].parentNode;
     parent.insertBefore(taskSection, start_block[0].nextSibling);
 
@@ -66,6 +105,7 @@ button.addEventListener('click', () => {
     let addElement = document.createElement('h2');
     if (createTaskFields[0].value) {
       addElement.textContent = createTaskFields[0].value;
+      savedTitle = createTaskFields[0].value;
     } else {
       addElement.textContent = "Неизвестен"
     }
@@ -77,6 +117,7 @@ button.addEventListener('click', () => {
     addElement.textContent = createTaskFields[1].value;
     if (createTaskFields[1].value) {
       addElement.textContent = createTaskFields[1].value;
+      savedDescription = createTaskFields[1].value;
     } else {
       addElement.textContent = "Без названия"
     }
@@ -89,7 +130,15 @@ button.addEventListener('click', () => {
     taskSection.appendChild(addButton);
     const taskButtonsSection = createTaskButtons()
     parent = taskSection.parentNode;
-    parent.insertBefore(taskButtonsSection, taskSection.nextSibling);  
+    parent.insertBefore(taskButtonsSection, taskSection.nextSibling);
+    const savedTask = {
+      id: taskIndex - 1,
+      title: savedTitle,
+      description: savedDescription,
+    }  
+    let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+    tasks.push(savedTask);
+    localStorage.setItem('tasks', JSON.stringify(tasks));
 });
 
 main.addEventListener('click', event => {
@@ -113,13 +162,18 @@ main.addEventListener('click', event => {
     showModalWindow()
     modalWindowResult().then(result =>{
       if (result) {
-      parentTaskWindow.remove()
-      console.log("Задача ушла искать своё счастье")
-      targetButtonsPanel.remove()
-      console.log("Вместе с панелькой кнопок")
-      hideModalWindow()
+        let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+        const exterminationId = Number(parentTaskWindow.id);
+        tasks = tasks.filter(task => task.id !== exterminationId);
+        console.log(tasks[0])
+        localStorage.setItem('tasks', JSON.stringify(tasks));
+        parentTaskWindow.remove()
+        console.log("Задача ушла искать своё счастье" + exterminationId)
+        targetButtonsPanel.remove()
+        console.log("Вместе с панелькой кнопок")
+        hideModalWindow()
     } else {
-      hideModalWindow()
+        hideModalWindow()
     }
     })
   }
@@ -135,11 +189,11 @@ main.addEventListener('click', event => {
     createEditWindow(taskHeader.textContent, taskDescription.textContent)
     editWindowResult().then(result => {
       if (result) {
-      taskUpdate(targetWindow.id)  
-      deleteEditWindow()
-    } else {
-      deleteEditWindow()
-    }
+        taskUpdate(targetWindow.id)
+        deleteEditWindow()
+      } else {
+        deleteEditWindow()
+      }
     })
   }
   if (event.target.closest('.button_task_share')) {
@@ -337,6 +391,12 @@ function taskUpdate(id) {
   const targetWindow = Array.from(allTaskWindow).find(element => element.id == id);
   targetWindow.querySelector("h2").textContent = header.value
   targetWindow.querySelector("p").textContent = description.value
+  let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+  const targetTaskIndex = tasks.findIndex(task => task.id == id);
+  tasks[targetTaskIndex].title = header.value
+  tasks[targetTaskIndex].description = description.value
+  console.log(targetTaskIndex)
+  localStorage.setItem('tasks', JSON.stringify(tasks));
 }
 function shareWindowResult() {
   return new Promise((result) => {
