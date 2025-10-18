@@ -60,9 +60,9 @@
   background-color: #1f1e1b;
 }
 .button_task_delete img,
-.button_task_share img ,
+.button_task_share img,
 .button_task_info img,
-.button_task_edit img{
+.button_task_edit img {
   width: 70%;
   height: 70%;
 }
