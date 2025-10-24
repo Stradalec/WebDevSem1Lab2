@@ -1,0 +1,32 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    line-height: 1.5;
+    font-family: Roboto; 
+    background-color: #1B1A17;
+    color: #F0E3CA;
+}
+
+ul, ol {
+    list-style: none; 
+}
+
+a {
+    text-decoration: none; 
+    color: inherit; 
+}
+
+img, video {
+    max-width: 100%;
+    height: auto; 
+}
+
+input, textarea, button, select {
+    font-family: inherit;
+    font-size: inherit;
+}

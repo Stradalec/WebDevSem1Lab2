@@ -1,0 +1,109 @@
+.button_add {
+  background-color: #1b1a17;
+  color: #ff8303;
+  border-radius: 5px;
+  height: 90px;
+  width: 90px;
+  text-align: center;
+  font-size: 40px;
+  padding: 10px 10px;
+  margin: 0;
+  border: 2px solid #ff8303;
+  cursor: pointer;
+}
+.button_add:active {
+  background-color: #1f1e1b;
+}
+.button_dialog,
+.button_share,
+.task_window_button {
+  background-color: #1b1a17;
+  color: #f0e3ca;
+  border-radius: 5px;
+  height: 40px;
+  width: 150px;
+  text-align: center;
+  padding: 0px 10px;
+  font-size: 16px;
+  margin: 0;
+  border: 2px solid #ff8303;
+  cursor: pointer;
+  opacity: 50%;
+}
+.button_dialog:hover,
+.task_window_button:hover,
+.button_share:hover {
+  opacity: 100%;
+}
+
+.button_task_delete,
+.button_task_share,
+.button_task_info,
+.button_task_edit {
+  background-color: #1b1a17;
+  display: flex;
+  border-radius: 5px;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  width: 50px;
+  align-items: top;
+  font-size: 40px;
+  margin: 0;
+  border: 2px solid #ff8303;
+  cursor: pointer;
+}
+.button_task_delete:active,
+.button_task_share:active,
+.button_task_info:active,
+.button_task_edit:active {
+  background-color: #1f1e1b;
+}
+.button_task_delete img,
+.button_task_share img,
+.button_task_info img,
+.button_task_edit img {
+  width: 70%;
+  height: 70%;
+}
+
+.task_window_button {
+  display: flex;
+  flex-direction: column;
+  height: 80%;
+  width: 95%;
+  border: 0px;
+  gap: 15px;
+}
+.task_window_button h2 {
+  height: 70%;
+  width: 40%;
+  font-size: 40px;
+  text-align: left;
+}
+.task_window_button p {
+  height: 30%;
+  width: 100%;
+  font-size: 16px;
+  text-align: left;
+}
+.button_share {
+  background-color: #1b1a17;
+  padding: 0 0;
+  display: flex;
+  align-items: center;
+  border-radius: 15px;
+  border: 0px solid #f0e3ca;
+  height: 50px;
+  width: 50px;
+  opacity: 50%;
+}
+.button_share img {
+  margin: auto;
+  height: 50px;
+  width: 50px;
+}
+
+.button_share:hover {
+  opacity: 100%;
+}

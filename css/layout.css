@@ -1,0 +1,28 @@
+.input_column {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.input_row,
+.input_row_close,
+.input_row_right {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+  align-items: center;
+  justify-content: space-between;
+}
+.input_row_close {
+  justify-content: center;
+}
+.input_row_right {
+  margin-left: 85%;
+  align-items: flex-end;
+}
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 15px 15px;
+  gap: 30px;
+}
